@@ -1,0 +1,88 @@
+version: 2
+
+# project.dataset.table
+
+# dbt schema = bigquery dataset
+# dbt identifier = bigquery table
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    description: greenweez raw data source
+    tables:
+      - name: sales
+        identifier: raw_gz_sales
+        description: sales of greenweez / we have one row per products_id found in each orders_id
+        columns:
+          - name: date_date
+            description: the date of purchase
+          - name: orders_id
+            description: foreign key to ship
+          - name: pdt_id
+            description: foreign key to product
+          - name: revenue
+            description: the amount paid by the customer to purchase the product. revenue = quantity * selling_price
+          - name: quantity
+            description: the quantity of products purchased for this order
+        tests:
+          - unique:
+              column_name: "(orders_id || '-' || pdt_id)"
+      - name: product
+        identifier: raw_gz_product
+        description: products of Greenweez
+        columns:
+          - name: products_id
+            description: primary key of the table
+            tests:
+              - unique
+              - not_null
+          - name: purchase_price
+            description: the purchase price of the product
+      - name: ship
+        identifier: raw_gz_ship
+        description: ship of Greenweez
+        columns:
+          - name: orders_id
+            description: primary key of the table
+            tests:
+              - unique
+              - not_null          
+          - name: shiping_fee
+            description: the price the customer pays for shipping
+          - name: log_cost
+            description: the cost of preparing the parcel in the warehouse
+          - name: ship_cost
+            description: the shipping cost paid by Greenweez to the carrier/transporter
+      - name: int_sales_margin
+        description: margin calculation per order line / product sale
+        columns:
+          - name: margin
+            description: Margin = Revenue - Purchase_cost
+          - name: Purchase_Cost
+            description: Purchase_cost = Quantity * Purchase_price
+      - name: int_orders_margin
+        description: margin calculation per order
+        columns:
+          - name: order_id
+            description: primary key
+          - name: margin
+            description: Margin = Revenue - Purchase_cost
+          - name: Purchase_cost
+            description: Purchase_cost = Quantity * Purchase_price
+          - name: date_date
+            description: date of the order
+          - name: revenue
+            description: sum of revenue per order
+          - name: quantity
+            description: sum of quantity per order
+      - name: int_orders_operational
+        description: operationalmargin calculation per order
+        columns:
+          - name: operational_margin
+            description: Operational margin = margin + shipping fee - log_cost - ship_cost
+      - name: finance_days
+        description: finance calculation per days
+
+     
+         
+

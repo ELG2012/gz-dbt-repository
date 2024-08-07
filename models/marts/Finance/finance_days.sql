@@ -1,5 +1,3 @@
-{{ config(materialized='table', sort='timestamp')}}
-
 SELECT
     date_date
     ,COUNT(orders_id) AS nb_transactions

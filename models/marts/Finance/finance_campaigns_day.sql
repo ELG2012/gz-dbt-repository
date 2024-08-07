@@ -1,10 +1,10 @@
 SELECT 
   date_date,
   operational_margin - ads_cost AS ads_margin,
-  ROUND(average_basket,2) AS average_basket
+  ROUND(average_basket,2) AS average_basket,
   operational_margin,
   ads_cost,
-  ads_impressionn,
+  ads_impression,
   ads_clicks,
   quantity,
   revenue,
@@ -12,7 +12,7 @@ SELECT
   margin,
   shipping_fee,
   logcost,
-  ship_cost
+  ship_cost,
 FROM {{ ref('int_campaigns_day') }}
 FULL OUTER JOIN {{ ref('finance_days') }} 
   USING (date_date)

@@ -82,7 +82,77 @@ sources:
             description: Operational margin = margin + shipping fee - log_cost - ship_cost
       - name: finance_days
         description: finance calculation per days
-
-     
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: adwords marketing campaign
+        column:
+          - name: date_date
+            description: date of the campaign
+          - name: paid_source
+            description: Adwords    
+          - name: campaign_key
+            description: key of campaign
+          - name: campaign_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of campaign
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks
+      - name: bing 
+        identifier: raw_gz_bing
+        description: bing marketing campaign
+        column:
+          - name: date_date
+            description: date of the campaign
+          - name: paid_source
+            description: bing   
+          - name: campaign_key
+            description: key of campaign
+          - name: campaign_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of campaign
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks   
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: bing marketing campaign
+        column:
+          - name: date_date
+            description: date of the campaign
+          - name: paid_source
+            description: criteo
+          - name: campaign_key
+            description: key of campaign
+          - name: campaign_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of campaign
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks 
+      - name: facebook 
+        identifier: raw_gz_facebook
+        description: bing marketing campaign
+        column:
+          - name: date_date
+            description: date of the campaign
+          - name: paid_source
+            description: facebook
+          - name: campaign_key
+            description: key of campaign
+          - name: campaign_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of campaign
+          - name: impression
+            description: number of impressions
+          - name: click
+            description: number of clicks 
          
 

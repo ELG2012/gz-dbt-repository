@@ -1,4 +1,4 @@
-{{ config(materialized='table')}}
+{{ config(materialized='table', sort='timestamp')}}
 
 SELECT
     date_date
